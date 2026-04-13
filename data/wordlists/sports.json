@@ -1,0 +1,57 @@
+{
+  "sports": {
+    "words": [
+      { "word": "QUARTERBACK", "hint": "NFL team's primary passer" },
+      { "word": "MARATHON", "hint": "26.2 mile running race" },
+      { "word": "TRIATHLON", "hint": "Swim, bike, and run event" },
+      { "word": "REFEREE", "hint": "Game rule enforcer" },
+      { "word": "TOURNAMENT", "hint": "Multi-round competition" },
+      { "word": "LACROSSE", "hint": "Stick-and-ball field sport" },
+      { "word": "DECATHLON", "hint": "Ten athletic event competition" },
+      { "word": "BOBSLED", "hint": "Winter sliding team sport" },
+      { "word": "FENCING", "hint": "Sword fighting sport" },
+      { "word": "GYMNASTICS", "hint": "Acrobatic floor and apparatus sport" },
+      { "word": "PENTATHLON", "hint": "Five-event athletic competition" },
+      { "word": "QUARTERBACK", "hint": "American football passer" },
+      { "word": "DRIBBLE", "hint": "Bouncing ball while moving" },
+      { "word": "SLALOM", "hint": "Skiing through gates" },
+      { "word": "VELODROME", "hint": "Indoor cycling track" },
+      { "word": "BADMINTON", "hint": "Shuttlecock racket sport" },
+      { "word": "ARCHERY", "hint": "Bow and arrow target sport" },
+      { "word": "WRESTLING", "hint": "Grappling combat sport" },
+      { "word": "HURDLES", "hint": "Track barriers to jump over" },
+      { "word": "OFFSIDE", "hint": "Rule violation in team sports" },
+      { "word": "SPRINTER", "hint": "Short distance fast runner" },
+      { "word": "ENDURANCE", "hint": "Ability to sustain prolonged effort" },
+      { "word": "OVERTIME", "hint": "Extra playing period" },
+      { "word": "PODIUM", "hint": "Medal ceremony platform" },
+      { "word": "KNOCKOUT", "hint": "Boxing match ender" },
+      { "word": "CHAMPION", "hint": "Winner of a competition" },
+      { "word": "JAVELIN", "hint": "Thrown spear track event" },
+      { "word": "DISCUS", "hint": "Thrown disc track event" },
+      { "word": "PENALTY", "hint": "Rule breach punishment" },
+      { "word": "STADIUM", "hint": "Large sports arena" }
+    ],
+    "quotes": [
+      { "text": "It's not whether you get knocked down; it's whether you get up.", "author": "Vince Lombardi" },
+      { "text": "Champions keep playing until they get it right.", "author": "Billie Jean King" },
+      { "text": "You miss one hundred percent of the shots you don't take.", "author": "Wayne Gretzky" },
+      { "text": "The more difficult the victory, the greater the happiness in winning.", "author": "Pele" },
+      { "text": "Hard work beats talent when talent doesn't work hard.", "author": "Tim Notke" }
+    ],
+    "clues": [
+      { "word": "MARATHON", "clue": "Long-distance 26.2 mile race" },
+      { "word": "TRIATHLON", "clue": "Three-sport endurance event" },
+      { "word": "REFEREE", "clue": "Game official" },
+      { "word": "FENCING", "clue": "Olympic sword sport" },
+      { "word": "SLALOM", "clue": "Ski gate racing" },
+      { "word": "ARCHERY", "clue": "Bow and arrow competition" },
+      { "word": "PODIUM", "clue": "Medal winner's platform" },
+      { "word": "JAVELIN", "clue": "Thrown spear event" },
+      { "word": "DISCUS", "clue": "Thrown disc event" },
+      { "word": "CHAMPION", "clue": "Tournament winner" },
+      { "word": "HURDLES", "clue": "Track barriers to leap" },
+      { "word": "OVERTIME", "clue": "Extra game time" }
+    ]
+  }
+}

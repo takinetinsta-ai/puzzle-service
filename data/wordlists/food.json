@@ -1,0 +1,57 @@
+{
+  "food": {
+    "words": [
+      { "word": "SAFFRON", "hint": "The world's most expensive spice" },
+      { "word": "BRUSCHETTA", "hint": "Italian toasted bread appetizer" },
+      { "word": "UMAMI", "hint": "The fifth basic taste" },
+      { "word": "FERMENT", "hint": "Preserve food using microbes" },
+      { "word": "BRIOCHE", "hint": "Rich French egg bread" },
+      { "word": "MARINATE", "hint": "Soak food in seasoned liquid" },
+      { "word": "ZUCCHINI", "hint": "Green summer squash" },
+      { "word": "PROSCIUTTO", "hint": "Italian cured ham" },
+      { "word": "CARAMELIZED", "hint": "Browned sugar coating" },
+      { "word": "SOURDOUGH", "hint": "Bread made with fermented starter" },
+      { "word": "CHARCUTERIE", "hint": "Cured meat board" },
+      { "word": "GARNISH", "hint": "Decorative food addition" },
+      { "word": "TRUFFLE", "hint": "Rare underground fungus delicacy" },
+      { "word": "BALSAMIC", "hint": "Aged Italian vinegar" },
+      { "word": "RISOTTO", "hint": "Creamy Italian rice dish" },
+      { "word": "RATATOUILLE", "hint": "French vegetable stew" },
+      { "word": "TEMPURA", "hint": "Japanese light batter frying" },
+      { "word": "TANDOORI", "hint": "Indian clay oven cooking style" },
+      { "word": "GAZPACHO", "hint": "Cold Spanish tomato soup" },
+      { "word": "QUINOA", "hint": "High-protein South American grain" },
+      { "word": "CEVICHE", "hint": "Citrus-cured raw fish dish" },
+      { "word": "FONDUE", "hint": "Swiss melted cheese dip" },
+      { "word": "CROISSANT", "hint": "Buttery French pastry" },
+      { "word": "VERMICELLI", "hint": "Thin pasta noodles" },
+      { "word": "PESTO", "hint": "Basil and pine nut sauce" },
+      { "word": "HOLLANDAISE", "hint": "Rich butter egg yolk sauce" },
+      { "word": "CUISINE", "hint": "Style of cooking" },
+      { "word": "DELICACY", "hint": "Rare or special food item" },
+      { "word": "BRAISED", "hint": "Slow cooked in liquid" },
+      { "word": "APPETIZER", "hint": "Small first course dish" }
+    ],
+    "quotes": [
+      { "text": "One cannot think well, love well, sleep well, if one has not dined well.", "author": "Virginia Woolf" },
+      { "text": "Food is our common ground, a universal experience.", "author": "James Beard" },
+      { "text": "People who love to eat are always the best people.", "author": "Julia Child" },
+      { "text": "Cooking is at once child's play and adult joy.", "author": "Craig Claiborne" },
+      { "text": "The secret ingredient is always love.", "author": "Unknown" }
+    ],
+    "clues": [
+      { "word": "SAFFRON", "clue": "Precious yellow spice" },
+      { "word": "TRUFFLE", "clue": "Expensive underground fungus" },
+      { "word": "RISOTTO", "clue": "Creamy Italian rice" },
+      { "word": "SOURDOUGH", "clue": "Fermented starter bread" },
+      { "word": "TEMPURA", "clue": "Japanese fried batter" },
+      { "word": "GAZPACHO", "clue": "Cold Spanish soup" },
+      { "word": "CEVICHE", "clue": "Citrus raw fish dish" },
+      { "word": "PESTO", "clue": "Basil pasta sauce" },
+      { "word": "FONDUE", "clue": "Swiss cheese dip" },
+      { "word": "CROISSANT", "clue": "Flaky French pastry" },
+      { "word": "QUINOA", "clue": "Andean superfood grain" },
+      { "word": "BALSAMIC", "clue": "Aged Italian vinegar" }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "2000s": {
+    "words": [
+      { "word": "iPod", "hint": "Apple music player" },
+      { "word": "MySpace", "hint": "Early social network" },
+      { "word": "Emo", "hint": "Music and fashion subculture" },
+      { "word": "Ringtone", "hint": "Phone notification sound" },
+      { "word": "Blackberry", "hint": "Business smartphone" },
+      { "word": "YouTube", "hint": "Video sharing site founded 2005" },
+      { "word": "Facebook", "hint": "Social network founded 2004" },
+      { "word": "Twilight", "hint": "Vampire romance series" },
+      { "word": "Bluetooth", "hint": "Wireless technology" },
+      { "word": "Napster", "hint": "Peer-to-peer music sharing" },
+      { "word": "Podcast", "hint": "On-demand audio show" },
+      { "word": "Hybrid", "hint": "Dual fuel car type" },
+      { "word": "Blog", "hint": "Online personal journal" },
+      { "word": "Flip phone", "hint": "Folding mobile device" },
+      { "word": "Livestrong", "hint": "Yellow charity bracelet" },
+      { "word": "Ugg", "hint": "Sheepskin boot brand" },
+      { "word": "Guitar Hero", "hint": "Rhythm video game" },
+      { "word": "Wikipedia", "hint": "Online encyclopedia" },
+      { "word": "Sudoku", "hint": "Number grid puzzle" },
+      { "word": "Crocs", "hint": "Foam clog footwear" }
+    ],
+    "clues": [
+      { "word": "IPOD", "clue": "Apple device that put a thousand songs in your pocket" },
+      { "word": "MYSPACE", "clue": "Social network that predated Facebook" },
+      { "word": "YOUTUBE", "clue": "Google-owned video platform founded in 2005" },
+      { "word": "FACEBOOK", "clue": "Mark Zuckerberg's social network" },
+      { "word": "NAPSTER", "clue": "Controversial peer-to-peer music sharing service" },
+      { "word": "BLACKBERRY", "clue": "Popular business smartphone with physical keyboard" },
+      { "word": "TWILIGHT", "clue": "Stephenie Meyer vampire romance series" },
+      { "word": "BLOG", "clue": "Online journal or informational website" },
+      { "word": "PODCAST", "clue": "Downloadable audio show series" },
+      { "word": "WIKIPEDIA", "clue": "Free collaborative online encyclopedia" }
+    ],
+    "quotes": [
+      { "text": "Do you know it?", "author": "Google It" },
+      { "text": "Status update.", "author": "Facebook Era" },
+      { "text": "Thanks for the add.", "author": "MySpace" },
+      { "text": "Press play.", "author": "iPod Generation" },
+      { "text": "Loading... please wait.", "author": "Dial-up Era" }
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "travel": {
+    "words": [
+      { "word": "PASSPORT", "hint": "Travel identity document" },
+      { "word": "ITINERARY", "hint": "Travel plan schedule" },
+      { "word": "HOSTEL", "hint": "Budget traveler accommodation" },
+      { "word": "LANDMARK", "hint": "Notable tourist location" },
+      { "word": "CUSTOMS", "hint": "Border checkpoint for goods" },
+      { "word": "VISA", "hint": "Entry permission document" },
+      { "word": "LAYOVER", "hint": "Stop between flights" },
+      { "word": "SIGHTSEEING", "hint": "Visiting local attractions" },
+      { "word": "DEPARTURE", "hint": "Leaving a place" },
+      { "word": "SOUVENIR", "hint": "Keepsake from a trip" },
+      { "word": "EXPEDITION", "hint": "Organized exploratory journey" },
+      { "word": "WANDERLUST", "hint": "Strong desire to travel" },
+      { "word": "PILGRIMAGE", "hint": "Journey to a sacred place" },
+      { "word": "CURRENCY", "hint": "Money used in a country" },
+      { "word": "EMBASSY", "hint": "Country's diplomatic office abroad" },
+      { "word": "BOARDING", "hint": "Getting on a plane or ship" },
+      { "word": "LONGITUDE", "hint": "East-west geographic coordinate" },
+      { "word": "LATITUDE", "hint": "North-south geographic coordinate" },
+      { "word": "PENINSULA", "hint": "Land surrounded by water on three sides" },
+      { "word": "ARCHIPELAGO", "hint": "Chain of islands" },
+      { "word": "TRAVELER", "hint": "One who journeys" },
+      { "word": "BACKPACK", "hint": "Hiker's carried bag" },
+      { "word": "RESORT", "hint": "Vacation destination" },
+      { "word": "CRUISE", "hint": "Voyage on a large ship" },
+      { "word": "SAFARI", "hint": "African wildlife journey" },
+      { "word": "TRANSIT", "hint": "Passing through a place" },
+      { "word": "MONUMENT", "hint": "Historic commemorative structure" },
+      { "word": "HERITAGE", "hint": "Cultural legacy of a place" },
+      { "word": "COMMUTE", "hint": "Regular travel to work" },
+      { "word": "DESTINATION", "hint": "Place you're traveling to" }
+    ],
+    "quotes": [
+      { "text": "The world is a book and those who do not travel read only one page.", "author": "Saint Augustine" },
+      { "text": "Not all those who wander are lost.", "author": "J.R.R. Tolkien" },
+      { "text": "Travel is fatal to prejudice, bigotry, and narrow-mindedness.", "author": "Mark Twain" },
+      { "text": "A good traveler has no fixed plans and is not intent on arriving.", "author": "Lao Tzu" },
+      { "text": "Once a year, go someplace you have never been before.", "author": "Dalai Lama" }
+    ],
+    "clues": [
+      { "word": "PASSPORT", "clue": "International travel document" },
+      { "word": "VISA", "clue": "Entry permission stamp" },
+      { "word": "HOSTEL", "clue": "Budget accommodation for travelers" },
+      { "word": "SAFARI", "clue": "African wildlife viewing trip" },
+      { "word": "CRUISE", "clue": "Ocean liner vacation" },
+      { "word": "SOUVENIR", "clue": "Travel memento" },
+      { "word": "LAYOVER", "clue": "Airport waiting period" },
+      { "word": "CUSTOMS", "clue": "Border inspection" },
+      { "word": "RESORT", "clue": "Holiday destination" },
+      { "word": "HERITAGE", "clue": "Cultural legacy" },
+      { "word": "MONUMENT", "clue": "Historic landmark" },
+      { "word": "DEPARTURE", "clue": "Flight or trip start" }
+    ]
+  }
+}

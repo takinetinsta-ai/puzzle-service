@@ -1,0 +1,45 @@
+{
+  "90s": {
+    "words": [
+      { "word": "Nirvana", "hint": "Grunge band" },
+      { "word": "Tamagotchi", "hint": "Virtual pet toy" },
+      { "word": "Pager", "hint": "Pre-cellphone device" },
+      { "word": "Grunge", "hint": "Music genre" },
+      { "word": "Floppy", "hint": "Old storage disk" },
+      { "word": "Walkman", "hint": "Portable cassette player" },
+      { "word": "Dial-up", "hint": "Slow internet connection" },
+      { "word": "Blockbuster", "hint": "Video rental store" },
+      { "word": "VHS", "hint": "Video tape format" },
+      { "word": "Beanie", "hint": "Stuffed animal collectible" },
+      { "word": "Seinfeld", "hint": "Sitcom about nothing" },
+      { "word": "Discman", "hint": "Portable CD player" },
+      { "word": "Rollerblades", "hint": "Inline skates" },
+      { "word": "Scrunchie", "hint": "Hair accessory" },
+      { "word": "Spice", "hint": "Girl power group" },
+      { "word": "Platform", "hint": "Thick-soled shoe" },
+      { "word": "AOL", "hint": "Early internet service" },
+      { "word": "Pokemon", "hint": "Gotta catch em all" },
+      { "word": "Slime", "hint": "Nickelodeon green goo" },
+      { "word": "Friends", "hint": "Coffee shop sitcom" }
+    ],
+    "clues": [
+      { "word": "NIRVANA", "clue": "Grunge band fronted by Kurt Cobain" },
+      { "word": "TAMAGOTCHI", "clue": "Japanese virtual pet craze of the 90s" },
+      { "word": "GRUNGE", "clue": "Seattle-born music genre" },
+      { "word": "BLOCKBUSTER", "clue": "Video rental chain before streaming" },
+      { "word": "WALKMAN", "clue": "Sony portable cassette player" },
+      { "word": "SEINFELD", "clue": "NBC sitcom about nothing" },
+      { "word": "POKEMON", "clue": "Nintendo franchise to catch them all" },
+      { "word": "FRIENDS", "clue": "Six friends in New York City sitcom" },
+      { "word": "DISCMAN", "clue": "Portable compact disc player" },
+      { "word": "SCRUNCHIE", "clue": "Fabric-covered hair elastic" }
+    ],
+    "quotes": [
+      { "text": "As if!", "author": "Clueless 1995" },
+      { "text": "Talk to the hand.", "author": "90s Slang" },
+      { "text": "Be kind rewind.", "author": "VHS Era" },
+      { "text": "You've got mail.", "author": "AOL" },
+      { "text": "Girl power.", "author": "Spice Girls" }
+    ]
+  }
+}

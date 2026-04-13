@@ -1,0 +1,45 @@
+{
+  "music": {
+    "words": [
+      { "word": "Melody", "hint": "Sequence of musical notes" },
+      { "word": "Harmony", "hint": "Notes played together" },
+      { "word": "Rhythm", "hint": "Pattern of beats" },
+      { "word": "Tempo", "hint": "Speed of music" },
+      { "word": "Treble", "hint": "High frequency clef" },
+      { "word": "Bass", "hint": "Low frequency sound" },
+      { "word": "Chord", "hint": "Multiple notes at once" },
+      { "word": "Octave", "hint": "Eight-note interval" },
+      { "word": "Soprano", "hint": "Highest singing voice" },
+      { "word": "Staccato", "hint": "Short detached notes" },
+      { "word": "Vibrato", "hint": "Rapid pitch variation" },
+      { "word": "Crescendo", "hint": "Gradually getting louder" },
+      { "word": "Forte", "hint": "Loud in music" },
+      { "word": "Piano", "hint": "Soft in music or keyboard instrument" },
+      { "word": "Allegro", "hint": "Fast tempo marking" },
+      { "word": "Coda", "hint": "Concluding passage" },
+      { "word": "Overture", "hint": "Orchestral introduction" },
+      { "word": "Sonata", "hint": "Classical instrumental form" },
+      { "word": "Aria", "hint": "Opera solo song" },
+      { "word": "Legato", "hint": "Smooth connected notes" }
+    ],
+    "clues": [
+      { "word": "MELODY", "clue": "A sequence of single notes forming a tune" },
+      { "word": "HARMONY", "clue": "Notes sounding simultaneously to support a melody" },
+      { "word": "CRESCENDO", "clue": "Gradual increase in loudness" },
+      { "word": "STACCATO", "clue": "Musical direction to play notes short and detached" },
+      { "word": "VIBRATO", "clue": "Slight rapid variation in pitch for expression" },
+      { "word": "SOPRANO", "clue": "Highest range of singing voice" },
+      { "word": "ALLEGRO", "clue": "Fast and lively tempo marking" },
+      { "word": "SONATA", "clue": "Classical composition for solo instrument" },
+      { "word": "ARIA", "clue": "A self-contained song for one voice in an opera" },
+      { "word": "OVERTURE", "clue": "Orchestral piece at the start of an opera" }
+    ],
+    "quotes": [
+      { "text": "Music gives a soul to the universe.", "author": "Plato" },
+      { "text": "Without music life would be a mistake.", "author": "Friedrich Nietzsche" },
+      { "text": "One good thing about music is that when it hits you you feel no pain.", "author": "Bob Marley" },
+      { "text": "Music is the shorthand of emotion.", "author": "Leo Tolstoy" },
+      { "text": "Where words fail music speaks.", "author": "Hans Christian Andersen" }
+    ]
+  }
+}

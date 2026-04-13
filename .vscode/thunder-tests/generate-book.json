@@ -1,0 +1,39 @@
+{
+  "_id": "generate-puzzle-book",
+  "colName": "Puzzle Book Generator",
+  "requests": [
+    {
+      "_id": "req-generate-valid",
+      "name": "Generate book (valid — should return PDF)",
+      "url": "http://localhost:3000/api/generate",
+      "method": "POST",
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"Nature Puzzle Book Vol. 1\",\n  \"theme\": \"nature\",\n  \"difficulty\": \"normal\",\n  \"puzzleCounts\": {\n    \"sudoku\": 5,\n    \"wordSearch\": 5,\n    \"crossword\": 5,\n    \"wordScramble\": 5,\n    \"cryptogram\": 5\n  }\n}"
+      }
+    },
+    {
+      "_id": "req-generate-kdp-fail",
+      "name": "Generate book (empty title — expect 422)",
+      "url": "http://localhost:3000/api/generate",
+      "method": "POST",
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"\",\n  \"theme\": \"nature\",\n  \"difficulty\": \"easy\",\n  \"puzzleCounts\": { \"sudoku\": 1 }\n}"
+      }
+    },
+    {
+      "_id": "req-generate-missing-fields",
+      "name": "Generate book (missing fields — expect 400)",
+      "url": "http://localhost:3000/api/generate",
+      "method": "POST",
+      "headers": [{ "name": "Content-Type", "value": "application/json" }],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"title\": \"Test\"\n}"
+      }
+    }
+  ]
+}

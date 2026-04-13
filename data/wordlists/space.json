@@ -1,0 +1,45 @@
+{
+  "space": {
+    "words": [
+      { "word": "Galaxy", "hint": "Massive star system" },
+      { "word": "Nebula", "hint": "Interstellar gas cloud" },
+      { "word": "Pulsar", "hint": "Rotating neutron star" },
+      { "word": "Quasar", "hint": "Luminous galactic nucleus" },
+      { "word": "Orbit", "hint": "Path around a body" },
+      { "word": "Comet", "hint": "Icy body with a tail" },
+      { "word": "Asteroid", "hint": "Rocky space object" },
+      { "word": "Meteor", "hint": "Shooting star" },
+      { "word": "Eclipse", "hint": "Celestial body blocking light" },
+      { "word": "Solstice", "hint": "Longest or shortest day" },
+      { "word": "Equinox", "hint": "Equal day and night" },
+      { "word": "Cosmos", "hint": "The universe" },
+      { "word": "Gravity", "hint": "Force of attraction" },
+      { "word": "Supernova", "hint": "Exploding star" },
+      { "word": "Wormhole", "hint": "Space-time tunnel" },
+      { "word": "Singularity", "hint": "Black hole center" },
+      { "word": "Exoplanet", "hint": "Planet outside solar system" },
+      { "word": "Titan", "hint": "Saturn's largest moon" },
+      { "word": "Aurora", "hint": "Northern or southern lights" },
+      { "word": "Zenith", "hint": "Highest point in the sky" }
+    ],
+    "clues": [
+      { "word": "NEBULA", "clue": "Cloud of gas and dust in outer space" },
+      { "word": "PULSAR", "clue": "Highly magnetized rotating neutron star" },
+      { "word": "QUASAR", "clue": "Extremely luminous active galactic nucleus" },
+      { "word": "SUPERNOVA", "clue": "Powerful stellar explosion" },
+      { "word": "WORMHOLE", "clue": "Hypothetical tunnel through space-time" },
+      { "word": "EXOPLANET", "clue": "Planet orbiting a star outside our solar system" },
+      { "word": "SINGULARITY", "clue": "Point of infinite density at a black hole's center" },
+      { "word": "AURORA", "clue": "Natural light display near Earth's poles" },
+      { "word": "ECLIPSE", "clue": "When one celestial body blocks light from another" },
+      { "word": "SOLSTICE", "clue": "The longest or shortest day of the year" }
+    ],
+    "quotes": [
+      { "text": "The universe is under no obligation to make sense to you.", "author": "Neil deGrasse Tyson" },
+      { "text": "Equipped with his five senses man explores the universe around him.", "author": "Edwin Hubble" },
+      { "text": "Space is big. Really big.", "author": "Douglas Adams" },
+      { "text": "The cosmos is within us. We are made of star-stuff.", "author": "Carl Sagan" },
+      { "text": "To infinity and beyond.", "author": "Buzz Lightyear" }
+    ]
+  }
+}

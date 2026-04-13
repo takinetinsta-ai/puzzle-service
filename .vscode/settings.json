@@ -1,0 +1,48 @@
+{
+  // Format on save using Prettier
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // ESLint auto-fix on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // TypeScript — use the workspace version (from node_modules) not VS Code's bundled one
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // Show errors inline (Error Lens)
+  "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+
+  // Colorize — enable for CSS and TSX files
+  "colorize.languages": ["css", "scss", "tsx", "typescript"],
+
+  // CSS Var Complete — point at globals.css for var() autocomplete
+  "cssvar.files": ["app/globals.css"],
+  "cssvar.extensions": ["tsx", "ts", "css"],
+
+  // Path IntelliSense — recognise the @/ alias
+  "path-intellisense.mappings": {
+    "@": "${workspaceFolder}"
+  },
+
+  // Import Cost — show size in KB
+  "importCost.bundleSizeDecoration": "both",
+
+  // File associations
+  "files.associations": {
+    "*.css": "css"
+  },
+
+  // Exclude noise from the file explorer
+  "files.exclude": {
+    "**/.next": true,
+    "**/node_modules": true
+  },
+  "search.exclude": {
+    "**/.next": true,
+    "**/node_modules": true,
+    "**/package-lock.json": true
+  }
+}

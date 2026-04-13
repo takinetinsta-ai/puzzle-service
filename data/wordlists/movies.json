@@ -1,0 +1,45 @@
+{
+  "movies": {
+    "words": [
+      { "word": "Director", "hint": "Film's creative leader" },
+      { "word": "Screenplay", "hint": "Movie script" },
+      { "word": "Cinematography", "hint": "Art of film photography" },
+      { "word": "Protagonist", "hint": "Main character" },
+      { "word": "Antagonist", "hint": "Story's villain" },
+      { "word": "Sequel", "hint": "Follow-up film" },
+      { "word": "Blockbuster", "hint": "Massive hit film" },
+      { "word": "Premiere", "hint": "First screening event" },
+      { "word": "Franchise", "hint": "Series of related films" },
+      { "word": "Cameo", "hint": "Brief celebrity appearance" },
+      { "word": "Montage", "hint": "Sequence of short clips" },
+      { "word": "Storyboard", "hint": "Visual shot planning" },
+      { "word": "Flashback", "hint": "Scene from the past" },
+      { "word": "Cliffhanger", "hint": "Suspenseful ending" },
+      { "word": "Ensemble", "hint": "Large group cast" },
+      { "word": "Score", "hint": "Film's musical soundtrack" },
+      { "word": "Genre", "hint": "Category of film" },
+      { "word": "Subplot", "hint": "Secondary storyline" },
+      { "word": "Voiceover", "hint": "Off-screen narration" },
+      { "word": "Franchise", "hint": "Film series brand" }
+    ],
+    "clues": [
+      { "word": "SCREENPLAY", "clue": "Written script with dialogue and stage directions for a film" },
+      { "word": "CINEMATOGRAPHY", "clue": "Art and technique of film photography" },
+      { "word": "PROTAGONIST", "clue": "The main character in a story" },
+      { "word": "MONTAGE", "clue": "Film technique using a sequence of short clips" },
+      { "word": "CLIFFHANGER", "clue": "Tense unresolved ending that creates suspense" },
+      { "word": "STORYBOARD", "clue": "Sequence of drawings planning each camera shot" },
+      { "word": "FLASHBACK", "clue": "Scene that takes the narrative back in time" },
+      { "word": "CAMEO", "clue": "Brief appearance by a well-known person" },
+      { "word": "ENSEMBLE", "clue": "A cast featuring many prominent actors" },
+      { "word": "VOICEOVER", "clue": "Narration heard over the visuals of a film" }
+    ],
+    "quotes": [
+      { "text": "May the Force be with you.", "author": "Star Wars" },
+      { "text": "There is no place like home.", "author": "Wizard of Oz" },
+      { "text": "To infinity and beyond.", "author": "Toy Story" },
+      { "text": "You talking to me?", "author": "Taxi Driver" },
+      { "text": "Life is like a box of chocolates.", "author": "Forrest Gump" }
+    ]
+  }
+}

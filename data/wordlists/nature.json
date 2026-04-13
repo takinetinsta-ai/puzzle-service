@@ -1,0 +1,57 @@
+{
+  "nature": {
+    "words": [
+      { "word": "FOREST", "hint": "Dense area of trees" },
+      { "word": "CANYON", "hint": "Deep gorge carved by a river" },
+      { "word": "GLACIER", "hint": "Slow-moving mass of ice" },
+      { "word": "MONSOON", "hint": "Seasonal heavy rainfall" },
+      { "word": "ECOSYSTEM", "hint": "Community of living organisms" },
+      { "word": "WATERFALL", "hint": "Water falling from a height" },
+      { "word": "AVALANCHE", "hint": "Rapid snow descent on a mountain" },
+      { "word": "PENINSULA", "hint": "Land surrounded by water on three sides" },
+      { "word": "SAVANNA", "hint": "Tropical grassland with scattered trees" },
+      { "word": "VOLCANO", "hint": "Mountain that can erupt lava" },
+      { "word": "TUNDRA", "hint": "Treeless Arctic plain" },
+      { "word": "WETLAND", "hint": "Land saturated with water" },
+      { "word": "PRAIRIE", "hint": "Large open grassland" },
+      { "word": "FJORD", "hint": "Narrow sea inlet between cliffs" },
+      { "word": "ESTUARY", "hint": "Where river meets the sea" },
+      { "word": "LAGOON", "hint": "Shallow body of water near the sea" },
+      { "word": "MESA", "hint": "Flat-topped hill with steep sides" },
+      { "word": "SEDIMENT", "hint": "Particles deposited by water or wind" },
+      { "word": "EROSION", "hint": "Gradual wearing away of rock" },
+      { "word": "PERMAFROST", "hint": "Permanently frozen subsoil" },
+      { "word": "BIODIVERSITY", "hint": "Variety of life in an area" },
+      { "word": "POLLINATION", "hint": "Transfer of pollen between flowers" },
+      { "word": "HIBERNATION", "hint": "Long winter sleep of animals" },
+      { "word": "MIGRATORY", "hint": "Relating to seasonal movement" },
+      { "word": "TRIBUTARY", "hint": "Stream feeding a larger river" },
+      { "word": "DELTA", "hint": "Sediment deposit at river's mouth" },
+      { "word": "HABITAT", "hint": "Natural home of an organism" },
+      { "word": "STALACTITE", "hint": "Mineral spike hanging from cave ceiling" },
+      { "word": "GEOTHERMAL", "hint": "Heat from Earth's interior" },
+      { "word": "CANOPY", "hint": "Uppermost layer of a forest" }
+    ],
+    "quotes": [
+      { "text": "In every walk with nature, one receives far more than he seeks.", "author": "John Muir" },
+      { "text": "The earth does not belong to us. We belong to the earth.", "author": "Chief Seattle" },
+      { "text": "Look deep into nature and you will understand everything better.", "author": "Albert Einstein" },
+      { "text": "The clearest way into the universe is through a forest wilderness.", "author": "John Muir" },
+      { "text": "Nature is not a place to visit. It is home.", "author": "Gary Snyder" }
+    ],
+    "clues": [
+      { "word": "FOREST", "clue": "Dense woodland habitat" },
+      { "word": "CANYON", "clue": "River-carved chasm" },
+      { "word": "GLACIER", "clue": "Moving ice mass" },
+      { "word": "MONSOON", "clue": "Asia's rainy season wind" },
+      { "word": "VOLCANO", "clue": "Erupting mountain" },
+      { "word": "TUNDRA", "clue": "Arctic treeless plain" },
+      { "word": "PRAIRIE", "clue": "Flat North American grassland" },
+      { "word": "LAGOON", "clue": "Coastal shallow water" },
+      { "word": "DELTA", "clue": "River mouth deposit" },
+      { "word": "CANOPY", "clue": "Rainforest ceiling layer" },
+      { "word": "EROSION", "clue": "Slow rock wearing away" },
+      { "word": "HABITAT", "clue": "Animal's natural home" }
+    ]
+  }
+}

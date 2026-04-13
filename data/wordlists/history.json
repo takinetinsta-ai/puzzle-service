@@ -1,0 +1,57 @@
+{
+  "history": {
+    "words": [
+      { "word": "RENAISSANCE", "hint": "European cultural rebirth 14th-17th century" },
+      { "word": "REVOLUTION", "hint": "Sudden overthrow of a government" },
+      { "word": "DYNASTY", "hint": "Succession of rulers from one family" },
+      { "word": "PHARAOH", "hint": "Ancient Egyptian ruler" },
+      { "word": "CRUSADES", "hint": "Medieval religious military campaigns" },
+      { "word": "COLONIALISM", "hint": "Domination of one country by another" },
+      { "word": "FEUDALISM", "hint": "Medieval land-for-loyalty system" },
+      { "word": "MONARCHY", "hint": "Rule by a king or queen" },
+      { "word": "INQUISITION", "hint": "Medieval Church investigation body" },
+      { "word": "GLADIATOR", "hint": "Roman arena fighter" },
+      { "word": "ARCHAEOLOGY", "hint": "Study of ancient human remains" },
+      { "word": "HIEROGLYPH", "hint": "Egyptian pictorial writing" },
+      { "word": "CATAPULT", "hint": "Ancient siege weapon" },
+      { "word": "INFANTRY", "hint": "Foot soldiers in an army" },
+      { "word": "DIPLOMACY", "hint": "Art of negotiating between nations" },
+      { "word": "REPUBLIC", "hint": "State governed by elected officials" },
+      { "word": "EXPEDITION", "hint": "Organized exploration journey" },
+      { "word": "PARLIAMENT", "hint": "Legislative governing body" },
+      { "word": "REFORMATION", "hint": "16th century Christian church split" },
+      { "word": "COLOSSEUM", "hint": "Famous Roman amphitheater" },
+      { "word": "MYTHOLOGY", "hint": "Traditional stories of deities" },
+      { "word": "CIVILIZATION", "hint": "Advanced human social organization" },
+      { "word": "ARMISTICE", "hint": "Agreement to stop fighting" },
+      { "word": "EMPEROR", "hint": "Ruler of an empire" },
+      { "word": "PATRICIAN", "hint": "Elite class in ancient Rome" },
+      { "word": "CONQUEST", "hint": "Military takeover of territory" },
+      { "word": "TRIBUNAL", "hint": "Court of justice" },
+      { "word": "TREATY", "hint": "Formal agreement between nations" },
+      { "word": "HERITAGE", "hint": "Cultural legacy passed down" },
+      { "word": "MANDATE", "hint": "Official order or commission" }
+    ],
+    "quotes": [
+      { "text": "History is not a burden on the memory but an illumination of the soul.", "author": "Lord Acton" },
+      { "text": "Those who cannot remember the past are condemned to repeat it.", "author": "George Santayana" },
+      { "text": "History will be kind to me for I intend to write it.", "author": "Winston Churchill" },
+      { "text": "The most effective way to destroy people is to deny and obliterate their own understanding of their history.", "author": "George Orwell" },
+      { "text": "Study the past if you would define the future.", "author": "Confucius" }
+    ],
+    "clues": [
+      { "word": "RENAISSANCE", "clue": "European cultural rebirth period" },
+      { "word": "PHARAOH", "clue": "Ancient Egyptian king" },
+      { "word": "CRUSADES", "clue": "Medieval holy wars" },
+      { "word": "FEUDALISM", "clue": "Medieval social hierarchy system" },
+      { "word": "GLADIATOR", "clue": "Roman arena combatant" },
+      { "word": "CATAPULT", "clue": "Ancient siege machine" },
+      { "word": "REPUBLIC", "clue": "Elected government state" },
+      { "word": "COLOSSEUM", "clue": "Roman amphitheater" },
+      { "word": "ARMISTICE", "clue": "Ceasefire agreement" },
+      { "word": "DYNASTY", "clue": "Ruling family succession" },
+      { "word": "EMPEROR", "clue": "Empire's supreme ruler" },
+      { "word": "TREATY", "clue": "International agreement" }
+    ]
+  }
+}

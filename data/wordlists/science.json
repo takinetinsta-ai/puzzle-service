@@ -1,0 +1,57 @@
+{
+  "science": {
+    "words": [
+      { "word": "PHOTOSYNTHESIS", "hint": "Plants converting light to energy" },
+      { "word": "NEBULA", "hint": "Cloud of gas and dust in space" },
+      { "word": "QUANTUM", "hint": "Smallest discrete unit of energy" },
+      { "word": "ISOTOPE", "hint": "Variant of a chemical element" },
+      { "word": "MITOSIS", "hint": "Cell division process" },
+      { "word": "ELECTRON", "hint": "Negatively charged atomic particle" },
+      { "word": "CHROMOSOME", "hint": "DNA-carrying cell structure" },
+      { "word": "OSMOSIS", "hint": "Diffusion through a membrane" },
+      { "word": "CATALYST", "hint": "Substance that speeds up a reaction" },
+      { "word": "THEOREM", "hint": "Proven mathematical statement" },
+      { "word": "CENTRIFUGE", "hint": "Spinning separation device" },
+      { "word": "ALGORITHM", "hint": "Step-by-step problem-solving procedure" },
+      { "word": "RELATIVITY", "hint": "Einstein's space-time theory" },
+      { "word": "NEUTRON", "hint": "Neutral atomic particle" },
+      { "word": "TECTONIC", "hint": "Relating to Earth's moving plates" },
+      { "word": "HYPOTHESIS", "hint": "Testable scientific prediction" },
+      { "word": "RADIATION", "hint": "Energy emitted as waves or particles" },
+      { "word": "BIODEGRADABLE", "hint": "Can be broken down by microbes" },
+      { "word": "ECOSYSTEM", "hint": "Community of interacting organisms" },
+      { "word": "ATMOSPHERE", "hint": "Layers of gas around Earth" },
+      { "word": "MICROSCOPE", "hint": "Instrument to magnify tiny objects" },
+      { "word": "POLYMER", "hint": "Long chain molecule" },
+      { "word": "ENTROPY", "hint": "Measure of disorder in a system" },
+      { "word": "ANTIBODY", "hint": "Immune system protein" },
+      { "word": "MOLECULE", "hint": "Two or more bonded atoms" },
+      { "word": "SPECTRUM", "hint": "Range of electromagnetic radiation" },
+      { "word": "VELOCITY", "hint": "Speed with direction" },
+      { "word": "MUTATION", "hint": "Change in DNA sequence" },
+      { "word": "NEURON", "hint": "Brain nerve cell" },
+      { "word": "PERIODIC", "hint": "Relating to element classification table" }
+    ],
+    "quotes": [
+      { "text": "Science is not only a disciple of reason but also one of romance and passion.", "author": "Stephen Hawking" },
+      { "text": "The good thing about science is that it's true whether or not you believe in it.", "author": "Neil deGrasse Tyson" },
+      { "text": "Imagination is more important than knowledge.", "author": "Albert Einstein" },
+      { "text": "In science, there are no shortcuts to truth.", "author": "Karl Popper" },
+      { "text": "Science knows no country, because knowledge belongs to humanity.", "author": "Louis Pasteur" }
+    ],
+    "clues": [
+      { "word": "PHOTOSYNTHESIS", "clue": "Plant energy production" },
+      { "word": "NEBULA", "clue": "Interstellar gas cloud" },
+      { "word": "QUANTUM", "clue": "Smallest energy unit" },
+      { "word": "MITOSIS", "clue": "Cell splitting process" },
+      { "word": "OSMOSIS", "clue": "Membrane water diffusion" },
+      { "word": "CATALYST", "clue": "Reaction speed agent" },
+      { "word": "RELATIVITY", "clue": "Einstein's famous theory" },
+      { "word": "HYPOTHESIS", "clue": "Scientific starting guess" },
+      { "word": "ENTROPY", "clue": "System disorder measure" },
+      { "word": "MOLECULE", "clue": "Smallest substance unit" },
+      { "word": "NEURON", "clue": "Nerve cell" },
+      { "word": "SPECTRUM", "clue": "Light wavelength range" }
+    ]
+  }
+}

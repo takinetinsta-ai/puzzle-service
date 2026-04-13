@@ -1,0 +1,30 @@
+{
+  "recommendations": [
+    // TypeScript & React
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+
+    // Next.js
+    "pulkitgangwar.nextjs-snippets",
+    "dsznajder.es7-react-js-snippets",
+
+    // CSS
+    "phoenisx.cssvar",
+    "kamikillerto.vscode-colorize",
+
+    // API & PDF testing
+    "rangav.vscode-thunder-client",
+    "tomoki1207.pdf",
+
+    // Code quality
+    "usernamehw.errorlens",
+    "wix.vscode-import-cost",
+    "yoavbls.pretty-ts-errors",
+
+    // JSON / data
+    "quicktype.quicktype"
+  ]
+}

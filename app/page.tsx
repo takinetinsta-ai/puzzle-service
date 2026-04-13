@@ -65,6 +65,7 @@ export default function HomePage() {
   // UI state
   const [appState, setAppState]   = useState<AppState>('idle');
   const [error, setError]         = useState('');
+  const [errorStack, setErrorStack] = useState('');
   const [violations, setViolations] = useState<string[]>([]);
   const [downloadUrl, setDownloadUrl]   = useState('');
   const [downloadName, setDownloadName] = useState('');
@@ -159,6 +160,7 @@ export default function HomePage() {
 
     setAppState('generating');
     setError('');
+    setErrorStack('');
     setViolations([]);
 
     try {
@@ -177,6 +179,7 @@ export default function HomePage() {
       if (!res.ok) {
         const body = await res.json();
         if (body.violations?.length) setViolations(body.violations);
+        if (body.stack) setErrorStack(body.stack);
         throw new Error(body.error || 'Unknown error');
       }
 
@@ -421,6 +424,9 @@ export default function HomePage() {
                       <ul className="error-violations">
                         {violations.map((v, i) => <li key={i}>{v}</li>)}
                       </ul>
+                    )}
+                    {errorStack && (
+                      <pre style={{ fontSize: 10, marginTop: 8, whiteSpace: 'pre-wrap', color: '#555' }}>{errorStack}</pre>
                     )}
                   </div>
                 </div>

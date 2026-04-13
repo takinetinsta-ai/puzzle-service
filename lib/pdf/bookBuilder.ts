@@ -219,57 +219,67 @@ export async function buildBook(config: BookConfig): Promise<Buffer> {
 
       // Generate Sudoku
       const sudokuCount = config.puzzleCounts.sudoku ?? 0;
-      for (let i = 0; i < sudokuCount; i++) {
-        puzzles.push({ type: 'sudoku', data: generateSudoku(diff as SudokuDifficulty) });
-      }
+      try {
+        for (let i = 0; i < sudokuCount; i++) {
+          puzzles.push({ type: 'sudoku', data: generateSudoku(diff as SudokuDifficulty) });
+        }
+      } catch (e) { throw new Error(`SUDOKU gen failed: ${(e as Error).message}`); }
 
       // Generate Word Search
       const wsCount = config.puzzleCounts.wordSearch ?? 0;
-      for (let i = 0; i < wsCount; i++) {
-        puzzles.push({
-          type: 'wordSearch',
-          data: generateWordSearch(
-            themeData.words.map(w => w.word),
-            config.theme,
-            diff as WordSearchDifficulty,
-          ),
-        });
-      }
+      try {
+        for (let i = 0; i < wsCount; i++) {
+          puzzles.push({
+            type: 'wordSearch',
+            data: generateWordSearch(
+              themeData.words.map(w => w.word),
+              config.theme,
+              diff as WordSearchDifficulty,
+            ),
+          });
+        }
+      } catch (e) { throw new Error(`WORDSEARCH gen failed: ${(e as Error).message}`); }
 
       // Generate Maze
       const mazeCount = config.puzzleCounts.maze ?? 0;
-      for (let i = 0; i < mazeCount; i++) {
-        puzzles.push({
-          type: 'maze',
-          data: generateMaze(config.theme, diff as MazeDifficulty),
-        });
-      }
+      try {
+        for (let i = 0; i < mazeCount; i++) {
+          puzzles.push({
+            type: 'maze',
+            data: generateMaze(config.theme, diff as MazeDifficulty),
+          });
+        }
+      } catch (e) { throw new Error(`MAZE gen failed: ${(e as Error).message}`); }
 
       // Generate Word Scramble
       const scrambleCount = config.puzzleCounts.wordScramble ?? 0;
-      for (let i = 0; i < scrambleCount; i++) {
-        puzzles.push({
-          type: 'wordScramble',
-          data: generateWordScramble(
-            themeData.words as WordEntry[],
-            config.theme,
-            diff as ScrambleDifficulty,
-          ),
-        });
-      }
+      try {
+        for (let i = 0; i < scrambleCount; i++) {
+          puzzles.push({
+            type: 'wordScramble',
+            data: generateWordScramble(
+              themeData.words as WordEntry[],
+              config.theme,
+              diff as ScrambleDifficulty,
+            ),
+          });
+        }
+      } catch (e) { throw new Error(`WORDSCRAMBLE gen failed: ${(e as Error).message}`); }
 
       // Generate Cryptogram
       const cryptoCount = config.puzzleCounts.cryptogram ?? 0;
-      for (let i = 0; i < cryptoCount; i++) {
-        puzzles.push({
-          type: 'cryptogram',
-          data: generateCryptogram(
-            themeData.quotes as QuoteEntry[],
-            config.theme,
-            diff as CryptogramDifficulty,
-          ),
-        });
-      }
+      try {
+        for (let i = 0; i < cryptoCount; i++) {
+          puzzles.push({
+            type: 'cryptogram',
+            data: generateCryptogram(
+              themeData.quotes as QuoteEntry[],
+              config.theme,
+              diff as CryptogramDifficulty,
+            ),
+          });
+        }
+      } catch (e) { throw new Error(`CRYPTOGRAM gen failed: ${(e as Error).message}`); }
 
       // Render puzzle pages
       for (const puzzle of puzzles) {

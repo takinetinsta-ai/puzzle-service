@@ -101,7 +101,8 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error('Book generation error:', err);
     const message = err instanceof Error ? err.message : 'Failed to generate book. Please try again.';
+    const stack = err instanceof Error ? err.stack : '';
     const isKdpError = message.startsWith('Amazon KDP requirements not met');
-    return NextResponse.json({ error: message }, { status: isKdpError ? 422 : 500 });
+    return NextResponse.json({ error: message, stack }, { status: isKdpError ? 422 : 500 });
   }
 }

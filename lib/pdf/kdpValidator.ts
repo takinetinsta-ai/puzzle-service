@@ -142,7 +142,6 @@ function collectViolations(config: BookConfig): Violation[] {
   const perType: Record<string, number> = {
     sudoku:       counts.sudoku       ?? 0,
     wordSearch:   counts.wordSearch   ?? 0,
-    maze:         counts.maze         ?? 0,
     wordScramble: counts.wordScramble ?? 0,
     cryptogram:   counts.cryptogram   ?? 0,
   };
@@ -197,23 +196,20 @@ function estimatePageCount(counts: Record<string, number>): number {
   const {
     sudoku = 0,
     wordSearch = 0,
-    maze = 0,
     wordScramble = 0,
     cryptogram = 0,
   } = counts;
 
-  const puzzlePages = sudoku + wordSearch + maze + wordScramble + cryptogram;
+  const puzzlePages = sudoku + wordSearch + wordScramble + cryptogram;
 
   // Solutions section:
   //   - 1 header page
   //   - 1 page per sudoku solution
-  //   - 1 page per maze solution
   //   - 1 page for all word-scramble answers (if any)
   //   - 1 page for all cryptogram answers (if any)
   const solutionPages =
     1 +
     sudoku +
-    maze +
     (wordScramble > 0 ? 1 : 0) +
     (cryptogram > 0 ? 1 : 0);
 
@@ -270,7 +266,6 @@ export function kdpPreflightReport(config: BookConfig): {
   const counts = {
     sudoku:       config.puzzleCounts?.sudoku       ?? 0,
     wordSearch:   config.puzzleCounts?.wordSearch   ?? 0,
-    maze:         config.puzzleCounts?.maze         ?? 0,
     wordScramble: config.puzzleCounts?.wordScramble ?? 0,
     cryptogram:   config.puzzleCounts?.cryptogram   ?? 0,
   };

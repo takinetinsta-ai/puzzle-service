@@ -9,7 +9,6 @@ import { SudokuPuzzle } from '../puzzles/sudoku/generator';
 import { WordSearchPuzzle } from '../puzzles/wordSearch/generator';
 import { WordScramblePuzzle } from '../puzzles/wordScramble/generator';
 import { CryptogramPuzzle } from '../puzzles/cryptogram/generator';
-import { MazePuzzle } from '../puzzles/maze/generator';
 
 type Doc = InstanceType<typeof PDFDocument>;
 
@@ -227,51 +226,3 @@ export function renderCryptogramPage(doc: Doc, kdp: KDPConfig, puzzle: Cryptogra
   drawPageFooter(doc, kdp, puzzleNumber, pageNumber, isOdd);
 }
 
-// ─── Maze ─────────────────────────────────────────────────────────────────────
-
-function drawMazeGrid(doc: Doc, kdp: KDPConfig, maze: MazePuzzle, x0: number, y0: number, gridSize: number, showSolution: boolean): void {
-  const cellSize = gridSize / maze.cols;
-  const lw = Math.max(0.5, cellSize * 0.07);
-
-  if (showSolution) {
-    for (const [r, c] of maze.solution) {
-      doc.rect(x0 + c * cellSize + lw, y0 + r * cellSize + lw, cellSize - lw * 2, cellSize - lw * 2).fill('#dddddd');
-    }
-  }
-
-  doc.lineWidth(lw).strokeColor('#000000');
-  for (let r = 0; r < maze.rows; r++) {
-    for (let c = 0; c < maze.cols; c++) {
-      const cell = maze.grid[r][c];
-      const cx = x0 + c * cellSize;
-      const cy = y0 + r * cellSize;
-      if (cell.walls.top)    doc.moveTo(cx, cy).lineTo(cx + cellSize, cy).stroke();
-      if (cell.walls.right)  doc.moveTo(cx + cellSize, cy).lineTo(cx + cellSize, cy + cellSize).stroke();
-      if (cell.walls.bottom) doc.moveTo(cx, cy + cellSize).lineTo(cx + cellSize, cy + cellSize).stroke();
-      if (cell.walls.left)   doc.moveTo(cx, cy).lineTo(cx, cy + cellSize).stroke();
-    }
-  }
-
-  const labelSize = Math.max(6, cellSize * 0.5);
-  doc.fontSize(labelSize).font(kdp.fonts.title).fillColor('#000000');
-  doc.text('IN',  x0 - labelSize * 1.8, y0 - labelSize * 0.3, { width: labelSize * 2, align: 'right' });
-  doc.text('OUT', x0 + gridSize + 2, y0 + gridSize - labelSize * 0.5, { width: labelSize * 2.5 });
-}
-
-export function renderMazePage(doc: Doc, kdp: KDPConfig, maze: MazePuzzle, puzzleNumber: number, pageNumber: number, isOdd: boolean): void {
-  const x0 = isOdd ? kdp.contentXOdd : kdp.contentXEven;
-  const w  = kdp.contentWidthPt;
-  drawPageTitle(doc, kdp, `MAZE — ${maze.difficulty.toUpperCase()}`, `Puzzle #${puzzleNumber}`, isOdd);
-  const gridSize = Math.min(w * 0.82, kdp.pt(5.8));
-  drawMazeGrid(doc, kdp, maze, x0 + (w - gridSize) / 2, kdp.contentY + kdp.pt(1.0), gridSize, false);
-  drawPageFooter(doc, kdp, puzzleNumber, pageNumber, isOdd);
-}
-
-export function renderMazeSolution(doc: Doc, kdp: KDPConfig, maze: MazePuzzle, puzzleNumber: number, pageNumber: number, isOdd: boolean): void {
-  const x0 = isOdd ? kdp.contentXOdd : kdp.contentXEven;
-  const w  = kdp.contentWidthPt;
-  drawPageTitle(doc, kdp, `MAZE SOLUTION #${puzzleNumber}`, `${maze.difficulty.toUpperCase()} — ${maze.theme.toUpperCase()}`, isOdd);
-  const gridSize = Math.min(w * 0.82, kdp.pt(5.8));
-  drawMazeGrid(doc, kdp, maze, x0 + (w - gridSize) / 2, kdp.contentY + kdp.pt(1.0), gridSize, true);
-  drawPageFooter(doc, kdp, puzzleNumber, pageNumber, isOdd);
-}

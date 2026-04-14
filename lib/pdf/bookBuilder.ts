@@ -17,12 +17,9 @@ import {
   renderWordSearchPage,
   renderWordScramblePage,
   renderCryptogramPage,
-  renderMazePage,
-  renderMazeSolution,
 } from './pageLayouts';
 import { SudokuPuzzle, generateSudoku, SudokuDifficulty } from '../puzzles/sudoku/generator';
 import { WordSearchPuzzle, generateWordSearch, WordSearchDifficulty } from '../puzzles/wordSearch/generator';
-import { MazePuzzle, generateMaze, MazeDifficulty } from '../puzzles/maze/generator';
 import { WordScramblePuzzle, generateWordScramble, ScrambleDifficulty, WordEntry } from '../puzzles/wordScramble/generator';
 import { CryptogramPuzzle, generateCryptogram, CryptogramDifficulty, QuoteEntry } from '../puzzles/cryptogram/generator';
 import { loadThemeData } from '../data/themeLoader';
@@ -43,7 +40,6 @@ export interface BookConfig {
   puzzleCounts: {
     sudoku?: number;
     wordSearch?: number;
-    maze?: number;
     wordScramble?: number;
     cryptogram?: number;
   };
@@ -131,7 +127,6 @@ function drawInstructionsPage(doc: InstanceType<typeof PDFDocument>, kdp: KDPCon
   const instructions: [string, string][] = [
     ['SUDOKU', 'Fill every row, column, and 3×3 box with the digits 1–9. Each digit must appear exactly once in each row, column, and box. Shaded cells are given clues — do not change them.'],
     ['WORD SEARCH', 'Find all the hidden words listed at the bottom of the page. Words may appear horizontally, vertically, or diagonally — and may be reversed. Circle each word as you find it.'],
-    ['MAZE', 'Find your way from the entrance at the top to the exit at the bottom. You may not pass through walls. Solutions are provided at the back of this book.'],
     ['WORD SCRAMBLE', 'Unscramble the mixed-up letters to reveal a themed word. Write your answer on the blank line beside each puzzle. The hints in parentheses provide a clue to the word\'s meaning.'],
     ['CRYPTOGRAM', 'In a cryptogram, each letter has been replaced by a different letter of the alphabet using a substitution cipher. Use the revealed hint letters and the cipher reference to decode the hidden quote.'],
   ];
@@ -211,7 +206,6 @@ export async function buildBook(config: BookConfig): Promise<Buffer> {
       type PuzzleRecord =
         | { type: 'sudoku'; data: SudokuPuzzle }
         | { type: 'wordSearch'; data: WordSearchPuzzle }
-        | { type: 'maze'; data: MazePuzzle }
         | { type: 'wordScramble'; data: WordScramblePuzzle }
         | { type: 'cryptogram'; data: CryptogramPuzzle };
 
@@ -239,17 +233,6 @@ export async function buildBook(config: BookConfig): Promise<Buffer> {
           });
         }
       } catch (e) { throw new Error(`WORDSEARCH gen failed: ${(e as Error).message}`); }
-
-      // Generate Maze
-      const mazeCount = config.puzzleCounts.maze ?? 0;
-      try {
-        for (let i = 0; i < mazeCount; i++) {
-          puzzles.push({
-            type: 'maze',
-            data: generateMaze(config.theme, diff as MazeDifficulty),
-          });
-        }
-      } catch (e) { throw new Error(`MAZE gen failed: ${(e as Error).message}`); }
 
       // Generate Word Scramble
       const scrambleCount = config.puzzleCounts.wordScramble ?? 0;
@@ -294,9 +277,6 @@ export async function buildBook(config: BookConfig): Promise<Buffer> {
           case 'wordSearch':
             renderWordSearchPage(doc, kdp, puzzle.data, puzzleNumber, pageNumber, isOdd);
             break;
-          case 'maze':
-            renderMazePage(doc, kdp, puzzle.data, puzzleNumber, pageNumber, isOdd);
-            break;
           case 'wordScramble':
             renderWordScramblePage(doc, kdp, puzzle.data, puzzleNumber, pageNumber, isOdd);
             break;
@@ -323,44 +303,59 @@ export async function buildBook(config: BookConfig): Promise<Buffer> {
         solPuzzleNum++;
       }
 
-      // ── Maze solutions ────────────────────────────────────────────────────
-      let mazeSolNum = 1;
-      for (const puzzle of puzzles) {
-        if (puzzle.type === 'maze') {
-          doc.addPage();
-          pageNumber++;
-          renderMazeSolution(doc, kdp, puzzle.data, mazeSolNum, pageNumber, pageNumber % 2 !== 0);
-          mazeSolNum++;
-        }
-      }
-
       // ── Word Scramble solutions ───────────────────────────────────────────
       const scramblePuzzles = puzzles.filter(p => p.type === 'wordScramble') as { type: 'wordScramble'; data: WordScramblePuzzle }[];
       if (scramblePuzzles.length > 0) {
-        doc.addPage();
-        pageNumber++;
-        const x = (pageNumber % 2 !== 0) ? kdp.contentXOdd : kdp.contentXEven;
-        const w = kdp.contentWidthPt;
-        let y = kdp.contentY;
+        const pageBottom = kdp.pageHeightPt - kdp.pt(1);
+        const rowH       = 14; // px per answer row
+        const cols       = 3;
 
-        doc.fontSize(16).font(kdp.fonts.title).text('WORD SCRAMBLE ANSWERS', x, y, { width: w, align: 'center' });
-        y += kdp.pt(0.5);
+        // Helper: start a fresh page and return the new x/y
+        const newScramblePage = (): { x: number; y: number } => {
+          doc.addPage();
+          pageNumber++;
+          const x = (pageNumber % 2 !== 0) ? kdp.contentXOdd : kdp.contentXEven;
+          return { x, y: kdp.contentY };
+        };
+
+        // First page — draw section header
+        let { x, y } = newScramblePage();
+        doc.fontSize(16).font(kdp.fonts.title).fillColor('#000000')
+          .text('WORD SCRAMBLE ANSWERS', x, y, { width: kdp.contentWidthPt, align: 'center' });
+        y += kdp.pt(0.55);
 
         let sNum = 1;
         for (const { data } of scramblePuzzles) {
-          doc.fontSize(10).font(kdp.fonts.title).fillColor('#000000').text(`Puzzle #${sNum++}:`, x, y, { width: w });
-          y += 14;
           const answers = data.items.map((item, i) => `${i + 1}. ${item.answer}`);
-          const cols = 3;
-          const colW = w / cols;
-          answers.forEach((ans, i) => {
-            doc.fontSize(9).font(kdp.fonts.body).fillColor('#333333')
-              .text(ans, x + (i % cols) * colW, y + Math.floor(i / cols) * 12, { width: colW });
-          });
-          y += (Math.ceil(answers.length / cols) * 12) + 16;
-          if (y > kdp.pageHeightPt - kdp.pt(1)) {
-            doc.addPage(); pageNumber++; y = kdp.contentY;
+          const rows    = Math.ceil(answers.length / cols);
+          const blockH  = 16 + rows * rowH; // label + rows + gap
+
+          // If this puzzle block won't fit, start a new page
+          if (y + blockH > pageBottom) {
+            ({ x, y } = newScramblePage());
           }
+
+          // Puzzle label
+          doc.fontSize(10).font(kdp.fonts.title).fillColor('#000000')
+            .text(`Puzzle #${sNum++}:`, x, y, { width: kdp.contentWidthPt });
+          y += 14;
+
+          // Answers — one row at a time, paginating mid-block if needed
+          const colW = kdp.contentWidthPt / cols;
+          for (let row = 0; row < rows; row++) {
+            if (y + rowH > pageBottom) {
+              ({ x, y } = newScramblePage());
+            }
+            for (let col = 0; col < cols; col++) {
+              const idx = row * cols + col;
+              if (idx < answers.length) {
+                doc.fontSize(9).font(kdp.fonts.body).fillColor('#333333')
+                  .text(answers[idx], x + col * colW, y, { width: colW });
+              }
+            }
+            y += rowH;
+          }
+          y += 10; // gap between puzzles
         }
       }
 

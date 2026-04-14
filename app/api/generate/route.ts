@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     }
 
     // ── Per-count type validation ─────────────────────────────────────────────
-    const PUZZLE_KEYS = ['sudoku', 'wordSearch', 'maze', 'wordScramble', 'cryptogram'] as const;
+    const PUZZLE_KEYS = ['sudoku', 'wordSearch', 'wordScramble', 'cryptogram'] as const;
     for (const key of PUZZLE_KEYS) {
       const raw = puzzleCounts[key];
       if (raw !== undefined && raw !== null) {
@@ -68,7 +68,6 @@ export async function POST(req: NextRequest) {
       puzzleCounts: {
         sudoku:       Number(puzzleCounts.sudoku)       || 0,
         wordSearch:   Number(puzzleCounts.wordSearch)   || 0,
-        maze:         Number(puzzleCounts.maze)         || 0,
         wordScramble: Number(puzzleCounts.wordScramble) || 0,
         cryptogram:   Number(puzzleCounts.cryptogram)   || 0,
       },

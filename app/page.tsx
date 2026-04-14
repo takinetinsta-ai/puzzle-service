@@ -12,7 +12,6 @@ type TrimSize = '8.5x11' | '6x9' | '5.5x8.5';
 interface PuzzleCounts {
   sudoku: number;
   wordSearch: number;
-  maze: number;
   wordScramble: number;
   cryptogram: number;
 }
@@ -40,7 +39,6 @@ const TRIM_SIZES: { id: TrimSize; label: string; desc: string }[] = [
 const PUZZLE_TYPES: { id: keyof PuzzleCounts; name: string; desc: string; emoji: string }[] = [
   { id: 'sudoku',      name: 'Sudoku',      desc: 'Classic 9×9 number grid',             emoji: '🔢' },
   { id: 'wordSearch',  name: 'Word Search', desc: 'Find hidden words in a letter grid',  emoji: '🔍' },
-  { id: 'maze',        name: 'Maze',        desc: 'Navigate from entrance to exit',       emoji: '🌀' },
   { id: 'wordScramble',name: 'Word Scramble',desc: 'Unscramble themed words',            emoji: '🔤' },
   { id: 'cryptogram',  name: 'Cryptogram',  desc: 'Decode the hidden quote',             emoji: '🔐' },
 ];
@@ -56,10 +54,10 @@ export default function HomePage() {
   const [difficulty, setDifficulty] = useState<Difficulty>('normal');
   const [trimSize, setTrimSize]   = useState<TrimSize>('8.5x11');
   const [enabled, setEnabled]     = useState<Record<keyof PuzzleCounts, boolean>>({
-    sudoku: true, wordSearch: true, maze: true, wordScramble: true, cryptogram: false,
+    sudoku: true, wordSearch: true, wordScramble: true, cryptogram: false,
   });
   const [counts, setCounts] = useState<PuzzleCounts>({
-    sudoku: 20, wordSearch: 15, maze: 10, wordScramble: 15, cryptogram: 10,
+    sudoku: 20, wordSearch: 15, wordScramble: 15, cryptogram: 10,
   });
 
   // UI state
@@ -83,10 +81,9 @@ export default function HomePage() {
 
   // Estimate final page count using same formula as kdpValidator
   const activeSudoku       = enabled.sudoku       ? counts.sudoku       : 0;
-  const activeMaze         = enabled.maze         ? counts.maze         : 0;
   const activeWordScramble = enabled.wordScramble ? counts.wordScramble : 0;
   const activeCryptogram   = enabled.cryptogram   ? counts.cryptogram   : 0;
-  const solutionPages = 1 + activeSudoku + activeMaze
+  const solutionPages = 1 + activeSudoku
     + (activeWordScramble > 0 ? 1 : 0)
     + (activeCryptogram   > 0 ? 1 : 0);
   const rawPages       = 2 + totalPuzzles + solutionPages;
@@ -96,17 +93,17 @@ export default function HomePage() {
   // ─── Auto-fill ───────────────────────────────────────────────────────────────
 
   // Page cost per puzzle type:
-  //   sudoku/maze: 1 puzzle page + 1 solution page = 2
+  //   sudoku:      1 puzzle page + 1 solution page = 2
   //   wordSearch:  1 puzzle page only              = 1
   //   wordScramble/cryptogram: 1 puzzle page + shared 1-page solution block = 1
   //     (the shared solution page is a fixed cost already counted in solutionPages)
   const PAGE_COST: Record<keyof PuzzleCounts, number> = {
-    sudoku: 2, wordSearch: 1, maze: 2, wordScramble: 1, cryptogram: 1,
+    sudoku: 2, wordSearch: 1, wordScramble: 1, cryptogram: 1,
   };
 
   function estimatePages(c: PuzzleCounts): number {
     const total = Object.values(c).reduce((s, n) => s + n, 0);
-    const sol = 1 + c.sudoku + c.maze
+    const sol = 1 + c.sudoku
       + (c.wordScramble > 0 ? 1 : 0)
       + (c.cryptogram   > 0 ? 1 : 0);
     const raw = 2 + total + sol;
@@ -119,7 +116,7 @@ export default function HomePage() {
 
     const TARGET = 100;
     // Start from scratch with 1 of each enabled type
-    const next: PuzzleCounts = { sudoku: 0, wordSearch: 0, maze: 0, wordScramble: 0, cryptogram: 0 };
+    const next: PuzzleCounts = { sudoku: 0, wordSearch: 0, wordScramble: 0, cryptogram: 0 };
     for (const k of activeTypes) next[k] = 1;
 
     // Add puzzles one at a time to the cheapest type until we reach the target

@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
     const safeTitle = sanitized || 'puzzle_book';
     const filename  = `${safeTitle}_${config.theme}_${config.difficulty}.pdf`;
 
-    return new NextResponse(pdfBuffer, {
+    return new NextResponse(new Uint8Array(pdfBuffer), {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',

@@ -57,7 +57,7 @@ export default function HomePage() {
     sudoku: true, wordSearch: true, wordScramble: true, cryptogram: false,
   });
   const [counts, setCounts] = useState<PuzzleCounts>({
-    sudoku: 20, wordSearch: 15, wordScramble: 15, cryptogram: 10,
+    sudoku: 25, wordSearch: 25, wordScramble: 20, cryptogram: 10,
   });
 
   // UI state

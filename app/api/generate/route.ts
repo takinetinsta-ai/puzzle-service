@@ -89,12 +89,11 @@ export async function POST(req: NextRequest) {
     const safeTitle = sanitized || 'puzzle_book';
     const filename  = `${safeTitle}_${config.theme}_${config.difficulty}.pdf`;
 
-    return new NextResponse(new Uint8Array(pdfBuffer), {
+    return new NextResponse(pdfBuffer, {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `attachment; filename="${filename}"`,
-        'Content-Length': String(pdfBuffer.length),
       },
     });
   } catch (err) {

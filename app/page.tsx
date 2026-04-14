@@ -181,18 +181,12 @@ export default function HomePage() {
       }
 
       const blob = await res.blob();
-      const url  = URL.createObjectURL(blob);
       const filename = res.headers.get('Content-Disposition')?.match(/filename="(.+)"/)?.[1]
         ?? 'puzzle_book.pdf';
 
-      // Trigger download immediately
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      if (blob.size === 0) throw new Error('Server returned an empty file. Please try again.');
 
+      const url = URL.createObjectURL(blob);
       setDownloadUrl(url);
       setDownloadName(filename);
       setAppState('success');

@@ -12,10 +12,10 @@ import PDFDocument from 'pdfkit';
 import { getKDP, KDPConfig } from './kdpConfig';
 import {
   renderSudokuPage,
-  renderSudokuSolution,
+  renderSudokuSolutionsPage,
   renderWordSearchPage,
   renderWordSearchSolutionsPage,
-  renderWordScramblePage,
+  renderWordScramblePairPage,
   renderCryptogramPage,
 } from './pageLayouts';
 import { SudokuPuzzle, generateSudoku, SudokuDifficulty } from '../puzzles/sudoku/generator';
@@ -108,18 +108,6 @@ function drawTitlePage(doc: InstanceType<typeof PDFDocument>, kdp: KDPConfig, co
       width: kdp.pageWidthPt,
       align: 'center',
     });
-}
-
-// ─── Solutions Header ─────────────────────────────────────────────────────────
-
-function drawSolutionsHeader(doc: InstanceType<typeof PDFDocument>, kdp: KDPConfig, isOdd: boolean): void {
-  const x = isOdd ? kdp.contentXOdd : kdp.contentXEven;
-  const w = kdp.contentWidthPt;
-  const y = kdp.contentY;
-
-  doc.fontSize(24).font(kdp.fonts.title).fillColor('#000000')
-    .text('SOLUTIONS', x, y, { width: w, align: 'center' });
-  doc.moveTo(x, y + 30).lineTo(x + w, y + 30).lineWidth(1).stroke();
 }
 
 // ─── Main Book Builder ────────────────────────────────────────────────────────
@@ -220,8 +208,23 @@ export async function buildBook(config: BookConfig): Promise<Buffer> {
         }
       } catch (e) { throw new Error(`CRYPTOGRAM gen failed: ${(e as Error).message}`); }
 
-      // Render puzzle pages
+      // Render puzzle pages (word scramble rendered 2-per-page)
+      let pendingScramble: { data: WordScramblePuzzle; num: number } | null = null;
+
       for (const puzzle of puzzles) {
+        if (puzzle.type === 'wordScramble') {
+          if (pendingScramble === null) {
+            pendingScramble = { data: puzzle.data, num: puzzleNumber };
+          } else {
+            doc.addPage();
+            pageNumber++;
+            renderWordScramblePairPage(doc, kdp, pendingScramble.data, puzzle.data, pendingScramble.num, puzzleNumber, pageNumber, pageNumber % 2 !== 0);
+            pendingScramble = null;
+          }
+          puzzleNumber++;
+          continue;
+        }
+
         doc.addPage();
         pageNumber++;
         const isOdd = pageNumber % 2 !== 0;
@@ -233,9 +236,6 @@ export async function buildBook(config: BookConfig): Promise<Buffer> {
           case 'wordSearch':
             renderWordSearchPage(doc, kdp, puzzle.data, puzzleNumber, pageNumber, isOdd);
             break;
-          case 'wordScramble':
-            renderWordScramblePage(doc, kdp, puzzle.data, puzzleNumber, pageNumber, isOdd);
-            break;
           case 'cryptogram':
             renderCryptogramPage(doc, kdp, puzzle.data, puzzleNumber, pageNumber, isOdd);
             break;
@@ -243,20 +243,23 @@ export async function buildBook(config: BookConfig): Promise<Buffer> {
         puzzleNumber++;
       }
 
-      // ── Solutions section header ───────────────────────────────────────────
-      doc.addPage();
-      pageNumber++;
-      drawSolutionsHeader(doc, kdp, pageNumber % 2 !== 0);
+      // Flush any remaining unpaired word scramble
+      if (pendingScramble !== null) {
+        doc.addPage();
+        pageNumber++;
+        renderWordScramblePairPage(doc, kdp, pendingScramble.data, null, pendingScramble.num, -1, pageNumber, pageNumber % 2 !== 0);
+        pendingScramble = null;
+      }
 
-      // ── Sudoku solutions ──────────────────────────────────────────────────
-      let solPuzzleNum = 1;
-      for (const puzzle of puzzles) {
-        if (puzzle.type === 'sudoku') {
-          doc.addPage();
-          pageNumber++;
-          renderSudokuSolution(doc, kdp, puzzle.data, solPuzzleNum, pageNumber, pageNumber % 2 !== 0);
-        }
-        solPuzzleNum++;
+      // ── Sudoku solutions (4 per page) ─────────────────────────────────────
+      const sudokuItems = puzzles
+        .filter(p => p.type === 'sudoku')
+        .map((p, i) => ({ puzzle: (p as { type: 'sudoku'; data: SudokuPuzzle }).data, puzzleNumber: i + 1 }));
+      for (let i = 0; i < sudokuItems.length; i += 4) {
+        const batch = sudokuItems.slice(i, i + 4);
+        doc.addPage();
+        pageNumber++;
+        renderSudokuSolutionsPage(doc, kdp, batch, pageNumber, pageNumber % 2 !== 0);
       }
 
       // ── Word Search solutions (4 per page) ───────────────────────────────

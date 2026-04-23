@@ -170,8 +170,8 @@ function collectViolations(config: BookConfig): Violation[] {
   }
 
   // 7. Estimated page count — must fall within KDP bounds
-  //    Structure: 1 title + puzzles + 1 solutions header
-  //               + sudoku solution pages + ceil(wordSearch/4) ws solution pages
+  //    Structure: 1 title + puzzle pages (scramble 2-up) + ceil(sudoku/4) solution pages
+  //               + ceil(wordSearch/4) ws solution pages
   //               + 1 scramble answers + 1 crypto answers
   //               + possible blank page → round up to even
   const estimatedPages = estimatePageCount(perType);
@@ -201,17 +201,16 @@ function estimatePageCount(counts: Record<string, number>): number {
     cryptogram = 0,
   } = counts;
 
-  const puzzlePages = sudoku + wordSearch + wordScramble + cryptogram;
+  // Word scramble puzzles are 2-per-page; all others are 1-per-page
+  const puzzlePages = sudoku + wordSearch + Math.ceil(wordScramble / 2) + cryptogram;
 
-  // Solutions section:
-  //   - 1 header page
-  //   - 1 page per sudoku solution
+  // Solutions section (no header page):
+  //   - ceil(sudoku / 4) pages for sudoku solutions (4 per page)
   //   - ceil(wordSearch / 4) pages for word search solutions (4 per page)
   //   - 1 page for all word-scramble answers (if any)
   //   - 1 page for all cryptogram answers (if any)
   const solutionPages =
-    1 +
-    sudoku +
+    Math.ceil(sudoku / 4) +
     Math.ceil(wordSearch / 4) +
     (wordScramble > 0 ? 1 : 0) +
     (cryptogram > 0 ? 1 : 0);

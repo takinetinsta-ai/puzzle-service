@@ -84,11 +84,12 @@ export default function HomePage() {
   const activeWordSearch   = enabled.wordSearch   ? counts.wordSearch   : 0;
   const activeWordScramble = enabled.wordScramble ? counts.wordScramble : 0;
   const activeCryptogram   = enabled.cryptogram   ? counts.cryptogram   : 0;
-  const solutionPages = 1 + activeSudoku
+  const solutionPages = Math.ceil(activeSudoku / 4)
     + Math.ceil(activeWordSearch / 4)
     + (activeWordScramble > 0 ? 1 : 0)
     + (activeCryptogram   > 0 ? 1 : 0);
-  const rawPages       = 1 + totalPuzzles + solutionPages;
+  const puzzlePages    = activeSudoku + activeWordSearch + Math.ceil(activeWordScramble / 2) + activeCryptogram;
+  const rawPages       = 1 + puzzlePages + solutionPages;
   const estimatedPages = rawPages % 2 !== 0 ? rawPages + 1 : rawPages;
   const belowMinPages  = estimatedPages < 24;
 

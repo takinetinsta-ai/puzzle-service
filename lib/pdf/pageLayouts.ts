@@ -6,7 +6,7 @@
 import PDFDocument from 'pdfkit';
 import { KDPConfig } from './kdpConfig';
 import { SudokuPuzzle } from '../puzzles/sudoku/generator';
-import { WordSearchPuzzle } from '../puzzles/wordSearch/generator';
+import { WordSearchPuzzle, WordPosition } from '../puzzles/wordSearch/generator';
 import { WordScramblePuzzle } from '../puzzles/wordScramble/generator';
 import { CryptogramPuzzle } from '../puzzles/cryptogram/generator';
 
@@ -37,7 +37,7 @@ export function renderSudokuPage(doc: Doc, kdp: KDPConfig, puzzle: SudokuPuzzle,
   const x0 = isOdd ? kdp.contentXOdd : kdp.contentXEven;
   const w  = kdp.contentWidthPt;
 
-  drawPageTitle(doc, kdp, `SUDOKU — ${puzzle.difficulty.toUpperCase()}`, `Puzzle #${puzzleNumber}`, isOdd);
+  drawPageTitle(doc, kdp, 'SUDOKU', `Puzzle #${puzzleNumber}`, isOdd);
 
   const gridSize = Math.min(w * 0.85, kdp.pt(6.2));
   const cellSize = gridSize / 9;
@@ -112,7 +112,7 @@ export function renderWordSearchPage(doc: Doc, kdp: KDPConfig, puzzle: WordSearc
   const x0 = isOdd ? kdp.contentXOdd : kdp.contentXEven;
   const w  = kdp.contentWidthPt;
 
-  drawPageTitle(doc, kdp, `WORD SEARCH — ${puzzle.theme.toUpperCase()}`, `${puzzle.difficulty.toUpperCase()} • Puzzle #${puzzleNumber}`, isOdd);
+  drawPageTitle(doc, kdp, 'WORD SEARCH', `Puzzle #${puzzleNumber}`, isOdd);
 
   const gridAreaSize = Math.min(w * 0.9, kdp.pt(5.8));
   const cellSize = gridAreaSize / puzzle.cols;
@@ -148,7 +148,7 @@ export function renderWordScramblePage(doc: Doc, kdp: KDPConfig, puzzle: WordScr
   const x0 = isOdd ? kdp.contentXOdd : kdp.contentXEven;
   const w  = kdp.contentWidthPt;
 
-  drawPageTitle(doc, kdp, `WORD SCRAMBLE — ${puzzle.theme.toUpperCase()}`, `${puzzle.difficulty.toUpperCase()} • Puzzle #${puzzleNumber}`, isOdd);
+  drawPageTitle(doc, kdp, 'WORD SCRAMBLE', `Puzzle #${puzzleNumber}`, isOdd);
 
   const startY = kdp.contentY + kdp.pt(0.8);
   const colW   = w / 2;
@@ -177,7 +177,7 @@ export function renderCryptogramPage(doc: Doc, kdp: KDPConfig, puzzle: Cryptogra
   const x0 = isOdd ? kdp.contentXOdd : kdp.contentXEven;
   const w  = kdp.contentWidthPt;
 
-  drawPageTitle(doc, kdp, `CRYPTOGRAM — ${puzzle.theme.toUpperCase()}`, `${puzzle.difficulty.toUpperCase()} • Puzzle #${puzzleNumber}`, isOdd);
+  drawPageTitle(doc, kdp, 'CRYPTOGRAM', `Puzzle #${puzzleNumber}`, isOdd);
 
   const instrY = kdp.contentY + kdp.pt(0.75);
   doc.fontSize(9).font(kdp.fonts.body).fillColor('#555555')
@@ -224,5 +224,101 @@ export function renderCryptogramPage(doc: Doc, kdp: KDPConfig, puzzle: Cryptogra
   });
 
   drawPageFooter(doc, kdp, puzzleNumber, pageNumber, isOdd);
+}
+
+// ─── Word Search Solutions (4-up) ─────────────────────────────────────────────
+
+export function renderWordSearchSolutionsPage(
+  doc: Doc,
+  kdp: KDPConfig,
+  puzzles: WordSearchPuzzle[],
+  startPuzzleNumber: number,
+  pageNumber: number,
+  isOdd: boolean,
+): void {
+  const x0 = isOdd ? kdp.contentXOdd : kdp.contentXEven;
+  const w  = kdp.contentWidthPt;
+  const contentH = kdp.pageHeightPt - kdp.contentY - kdp.pt(kdp.bottomMarginInches);
+
+  // Page header
+  doc.fontSize(14).font(kdp.fonts.title).fillColor('#000000')
+    .text('WORD SEARCH SOLUTIONS', x0, kdp.contentY, { width: w, align: 'center' });
+
+  const headerH   = kdp.pt(0.45);
+  const gridAreaY = kdp.contentY + headerH;
+  const gridAreaH = contentH - headerH;
+
+  const COLS = 2;
+  const ROWS = 2;
+  const cellW = w / COLS;
+  const cellH = gridAreaH / ROWS;
+  const pad   = kdp.pt(0.12);
+
+  // Dividers between quadrants
+  doc.moveTo(x0 + cellW, gridAreaY).lineTo(x0 + cellW, gridAreaY + gridAreaH)
+    .lineWidth(0.5).stroke('#cccccc');
+  doc.moveTo(x0, gridAreaY + cellH).lineTo(x0 + w, gridAreaY + cellH)
+    .lineWidth(0.5).stroke('#cccccc');
+
+  puzzles.slice(0, 4).forEach((puzzle, idx) => {
+    const col = idx % COLS;
+    const row = Math.floor(idx / COLS);
+    const cx  = x0 + col * cellW;
+    const cy  = gridAreaY + row * cellH;
+
+    // Build set of highlighted cells from word positions
+    const lit = new Set<string>();
+    for (const pos of (puzzle.positions ?? [])) {
+      for (let i = 0; i < pos.word.length; i++) {
+        lit.add(`${pos.row + pos.dr * i},${pos.col + pos.dc * i}`);
+      }
+    }
+
+    // Puzzle label
+    const labelH = 13;
+    doc.fontSize(8).font(kdp.fonts.title).fillColor('#000000')
+      .text(`Puzzle #${startPuzzleNumber + idx}`, cx + pad, cy + pad, { width: cellW - pad * 2 });
+
+    // Calculate available space
+    const wordListH = Math.ceil(puzzle.placed.length / 3) * 9 + 10;
+    const availW    = cellW - pad * 2;
+    const availH    = cellH - labelH - wordListH - pad * 4;
+    const gridSize  = Math.min(availW, availH);
+    const cellSize  = gridSize / puzzle.cols;
+    const gridX     = cx + pad + (availW - gridSize) / 2;
+    const gridY     = cy + pad + labelH;
+    const fontSize  = Math.max(5, Math.min(9, cellSize * 0.52));
+
+    // Draw grid cells
+    for (let r = 0; r < puzzle.rows; r++) {
+      for (let c = 0; c < puzzle.cols; c++) {
+        const gx          = gridX + c * cellSize;
+        const gy          = gridY + r * cellSize;
+        const highlighted = lit.has(`${r},${c}`);
+
+        if (highlighted) {
+          doc.rect(gx, gy, cellSize, cellSize).fill('#d0d0d0');
+        }
+
+        doc.fontSize(fontSize)
+          .font(highlighted ? kdp.fonts.title : kdp.fonts.body)
+          .fillColor(highlighted ? '#000000' : '#c0c0c0')
+          .text(puzzle.grid[r][c], gx, gy + cellSize / 2 - fontSize / 2, { width: cellSize, align: 'center' });
+      }
+    }
+
+    // Outer border
+    doc.rect(gridX, gridY, gridSize, gridSize).lineWidth(0.5).stroke('#999999');
+
+    // Word list below grid
+    const wordListY = gridY + gridSize + pad;
+    const wlColW    = (cellW - pad * 2) / 3;
+    [...puzzle.placed].sort().forEach((word, wi) => {
+      const wc = wi % 3;
+      const wr = Math.floor(wi / 3);
+      doc.fontSize(6).font(kdp.fonts.body).fillColor('#333333')
+        .text(word, cx + pad + wc * wlColW, wordListY + wr * 9, { width: wlColW - 2 });
+    });
+  });
 }
 

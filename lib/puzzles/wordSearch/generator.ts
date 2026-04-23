@@ -9,10 +9,19 @@
 
 export type WordSearchDifficulty = 'easy' | 'normal' | 'hard';
 
+export interface WordPosition {
+  word: string;
+  row: number;
+  col: number;
+  dr: number;
+  dc: number;
+}
+
 export interface WordSearchPuzzle {
   grid: string[][];
   words: string[];       // words to find (uppercase)
   placed: string[];      // words actually placed (some may not fit)
+  positions: WordPosition[];  // placement coordinates for each placed word
   theme: string;
   difficulty: WordSearchDifficulty;
   rows: number;
@@ -110,6 +119,7 @@ export function generateWordSearch(
     .slice(0, maxWords);
 
   const placed: string[] = [];
+  const positions: WordPosition[] = [];
 
   for (const word of words) {
     let success = false;
@@ -121,6 +131,7 @@ export function generateWordSearch(
       if (canPlace(grid, word, row, col, dr, dc)) {
         placeWord(grid, word, row, col, dr, dc);
         placed.push(word);
+        positions.push({ word, row, col, dr, dc });
         success = true;
       }
     }
@@ -133,5 +144,5 @@ export function generateWordSearch(
     }
   }
 
-  return { grid, words: placed, placed, theme, difficulty, rows: size, cols: size };
+  return { grid, words: placed, placed, positions, theme, difficulty, rows: size, cols: size };
 }

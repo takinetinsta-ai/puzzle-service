@@ -81,63 +81,16 @@ export default function HomePage() {
 
   // Estimate final page count using same formula as kdpValidator
   const activeSudoku       = enabled.sudoku       ? counts.sudoku       : 0;
+  const activeWordSearch   = enabled.wordSearch   ? counts.wordSearch   : 0;
   const activeWordScramble = enabled.wordScramble ? counts.wordScramble : 0;
   const activeCryptogram   = enabled.cryptogram   ? counts.cryptogram   : 0;
   const solutionPages = 1 + activeSudoku
+    + Math.ceil(activeWordSearch / 4)
     + (activeWordScramble > 0 ? 1 : 0)
     + (activeCryptogram   > 0 ? 1 : 0);
-  const rawPages       = 2 + totalPuzzles + solutionPages;
+  const rawPages       = 1 + totalPuzzles + solutionPages;
   const estimatedPages = rawPages % 2 !== 0 ? rawPages + 1 : rawPages;
   const belowMinPages  = estimatedPages < 24;
-
-  // ─── Auto-fill ───────────────────────────────────────────────────────────────
-
-  // Page cost per puzzle type:
-  //   sudoku:      1 puzzle page + 1 solution page = 2
-  //   wordSearch:  1 puzzle page only              = 1
-  //   wordScramble/cryptogram: 1 puzzle page + shared 1-page solution block = 1
-  //     (the shared solution page is a fixed cost already counted in solutionPages)
-  const PAGE_COST: Record<keyof PuzzleCounts, number> = {
-    sudoku: 2, wordSearch: 1, wordScramble: 1, cryptogram: 1,
-  };
-
-  function estimatePages(c: PuzzleCounts): number {
-    const total = Object.values(c).reduce((s, n) => s + n, 0);
-    const sol = 1 + c.sudoku
-      + (c.wordScramble > 0 ? 1 : 0)
-      + (c.cryptogram   > 0 ? 1 : 0);
-    const raw = 2 + total + sol;
-    return raw % 2 !== 0 ? raw + 1 : raw;
-  }
-
-  function handleAutoFill() {
-    const activeTypes = (Object.keys(enabled) as (keyof PuzzleCounts)[]).filter(k => enabled[k]);
-    if (activeTypes.length === 0) return;
-
-    const TARGET = 100;
-    // Start from scratch with 1 of each enabled type
-    const next: PuzzleCounts = { sudoku: 0, wordSearch: 0, wordScramble: 0, cryptogram: 0 };
-    for (const k of activeTypes) next[k] = 1;
-
-    // Add puzzles one at a time to the cheapest type until we reach the target
-    for (let guard = 0; guard < 10_000; guard++) {
-      const pages = estimatePages(next);
-      if (pages >= TARGET) break;
-
-      // Pick the enabled type with the lowest page-cost-per-puzzle
-      let best = activeTypes[0];
-      for (const k of activeTypes) {
-        if (PAGE_COST[k] < PAGE_COST[best]) best = k;
-        else if (PAGE_COST[k] === PAGE_COST[best] && next[k] < next[best]) best = k;
-      }
-      if (next[best] >= 100) break;
-      next[best]++;
-    }
-
-    // Clamp all to max 100
-    for (const k of activeTypes) next[k] = Math.min(100, next[k]);
-    setCounts(next);
-  }
 
   // ─── Handlers ────────────────────────────────────────────────────────────────
 
@@ -305,13 +258,6 @@ export default function HomePage() {
           <div className="section-header">
             <div className="step-badge">3</div>
             <h2>Puzzle Mix</h2>
-            <button
-              className="autofill-btn"
-              onClick={handleAutoFill}
-              title="Auto-distribute puzzles to reach ~100 pages"
-            >
-              📄 Auto-fill to 100 pages
-            </button>
           </div>
           <div className="card">
             <div className="puzzle-grid">

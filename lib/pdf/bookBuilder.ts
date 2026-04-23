@@ -3,10 +3,9 @@
  *
  * Sequence:
  *   1. Title page
- *   2. Instructions page
- *   3. Puzzle pages (mixed types, ordered by type groups)
- *   4. Solutions section (all answer keys)
- *   5. Blank page if total count is odd (KDP requires even page count)
+ *   2. Puzzle pages (mixed types, ordered by type groups)
+ *   3. Solutions section (all answer keys)
+ *   4. Blank page if total count is odd (KDP requires even page count)
  */
 
 import PDFDocument from 'pdfkit';
@@ -15,6 +14,7 @@ import {
   renderSudokuPage,
   renderSudokuSolution,
   renderWordSearchPage,
+  renderWordSearchSolutionsPage,
   renderWordScramblePage,
   renderCryptogramPage,
 } from './pageLayouts';
@@ -110,45 +110,6 @@ function drawTitlePage(doc: InstanceType<typeof PDFDocument>, kdp: KDPConfig, co
     });
 }
 
-// ─── Instructions Page ───────────────────────────────────────────────────────
-
-function drawInstructionsPage(doc: InstanceType<typeof PDFDocument>, kdp: KDPConfig): void {
-  const x = kdp.contentXOdd;
-  const w = kdp.contentWidthPt;
-  let y = kdp.contentY;
-
-  doc.fontSize(20).font(kdp.fonts.title).fillColor('#000000')
-    .text('HOW TO PLAY', x, y, { width: w, align: 'center' });
-  y += kdp.pt(0.5);
-
-  doc.moveTo(x, y).lineTo(x + w, y).lineWidth(1).stroke('#000000');
-  y += kdp.pt(0.3);
-
-  const instructions: [string, string][] = [
-    ['SUDOKU', 'Fill every row, column, and 3×3 box with the digits 1–9. Each digit must appear exactly once in each row, column, and box. Shaded cells are given clues — do not change them.'],
-    ['WORD SEARCH', 'Find all the hidden words listed at the bottom of the page. Words may appear horizontally, vertically, or diagonally — and may be reversed. Circle each word as you find it.'],
-    ['WORD SCRAMBLE', 'Unscramble the mixed-up letters to reveal a themed word. Write your answer on the blank line beside each puzzle. The hints in parentheses provide a clue to the word\'s meaning.'],
-    ['CRYPTOGRAM', 'In a cryptogram, each letter has been replaced by a different letter of the alphabet using a substitution cipher. Use the revealed hint letters and the cipher reference to decode the hidden quote.'],
-  ];
-
-  for (const [title, text] of instructions) {
-    doc.fontSize(12).font(kdp.fonts.title).fillColor('#000000').text(title, x, y, { width: w });
-    y += 16;
-    doc.fontSize(10).font(kdp.fonts.body).fillColor('#333333').text(text, x, y, { width: w });
-    y += doc.heightOfString(text, { width: w }) + kdp.pt(0.2);
-  }
-
-  // Solutions note
-  y += kdp.pt(0.1);
-  doc.moveTo(x, y).lineTo(x + w, y).lineWidth(0.5).stroke('#999999');
-  y += 10;
-  doc
-    .fontSize(10)
-    .font(kdp.fonts.body)
-    .fillColor('#555555')
-    .text('All solutions are provided at the back of this book. Try to solve each puzzle before peeking!', x, y, { width: w, align: 'center' });
-}
-
 // ─── Solutions Header ─────────────────────────────────────────────────────────
 
 function drawSolutionsHeader(doc: InstanceType<typeof PDFDocument>, kdp: KDPConfig, isOdd: boolean): void {
@@ -196,11 +157,6 @@ export async function buildBook(config: BookConfig): Promise<Buffer> {
 
       // ── Page 1: Title ─────────────────────────────────────────────────────
       drawTitlePage(doc, kdp, config);
-
-      // ── Page 2: Instructions ──────────────────────────────────────────────
-      doc.addPage();
-      pageNumber++;
-      drawInstructionsPage(doc, kdp);
 
       // ── Puzzle pages ──────────────────────────────────────────────────────
       type PuzzleRecord =
@@ -301,6 +257,15 @@ export async function buildBook(config: BookConfig): Promise<Buffer> {
           renderSudokuSolution(doc, kdp, puzzle.data, solPuzzleNum, pageNumber, pageNumber % 2 !== 0);
         }
         solPuzzleNum++;
+      }
+
+      // ── Word Search solutions (4 per page) ───────────────────────────────
+      const wsPuzzles = puzzles.filter(p => p.type === 'wordSearch') as { type: 'wordSearch'; data: WordSearchPuzzle }[];
+      for (let i = 0; i < wsPuzzles.length; i += 4) {
+        const batch = wsPuzzles.slice(i, i + 4).map(p => p.data);
+        doc.addPage();
+        pageNumber++;
+        renderWordSearchSolutionsPage(doc, kdp, batch, i + 1, pageNumber, pageNumber % 2 !== 0);
       }
 
       // ── Word Scramble solutions ───────────────────────────────────────────
